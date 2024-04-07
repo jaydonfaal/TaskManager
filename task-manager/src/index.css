@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -38,8 +39,8 @@ code {
 }
 
 .entry-button {
-  height: 3vh;
-  width: 4.5vw;
+  height: 31px;
+  width: 86.4px;
   border-radius: 5px;
   box-shadow: 2px 8px 10px rgba(1, 1, 1, 0.1);
   border: 1px solid white;
@@ -75,6 +76,7 @@ code {
   color: rgb(78, 78, 78);
   height: 6vh;
   border: 1px solid lightgray;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .new-item-header {
@@ -82,7 +84,7 @@ code {
   align-items: center;
   justify-content: center;
   font-size: 2vh;
-  width: 15vw;
+  width: 288px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   font-family: -apple-system,
@@ -92,11 +94,7 @@ code {
   color: white;
 }
 
-.center {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .font {
   font-family: -apple-system,
@@ -108,8 +106,8 @@ code {
 .input-field {
   margin-left: 1vw;
   margin-right: 1vw;
-  width: 13vw;
-  height: 4vh;
+  width: 258px;
+  height: 42px;
   border-radius: 3px;
   font-size: 1.7vh;
   border: 1px solid darkgray;
@@ -144,11 +142,11 @@ code {
 .newitem {
   margin-top: 15%;
   display: grid;
-  height: 40vh;
-  width: 15vw;
+  height: 408px;
+  width: 288px;
   border: 2px solid lightgray;
   border-radius: 5px;
-  grid-template-rows: repeat(6, 1fr)
+  grid-template-rows: repeat(6, 1fr);
 }
 
 .delete-button {
@@ -159,7 +157,7 @@ code {
   background-image: linear-gradient(#ea7469, #f93333);
   font-size: 1.5vh;
   font-weight: bold;
-  width: 6vw;
+  width: 120px;
   border: none;
   height: 4vh;
   color: white;
@@ -174,9 +172,81 @@ code {
   background-image: linear-gradient(#84bbf5, #2E8BF0);
   font-size: 1.5vh;
   font-weight: bold;
-  width: 6vw;
+  width: 120px;
   border: none;
   height: 4vh;
+  color: white;
+  border-radius: .25em;
+}
+
+
+.list{
+  font-family: -apple-system,
+  BlinkMacSystemFont, sans-serif;
+  border-bottom: 1px solid gray;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100vw;
+  height: 12.5vh;
+}
+
+.center {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.list-container{ 
+  list-style-type: none;
+  width: 100vw;
+  margin: 0;
+  padding:0;
+}
+
+.description{
+  overflow: scroll;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-container{
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 0px;
+  padding:0;
+  margin:0;
+}
+
+.delete-task-button {
+  font-family: -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  display: inline-block;
+  box-shadow: 2px 8px 10px rgba(1, 1, 1, 0.1);
+  background-image: linear-gradient(#ea7469, #f93333);
+  font-size: 1.5vh;
+  font-weight: bold;
+  width: 120px;
+  border: none;
+  margin-right: 5px;
+  height: 4vh;
+  color: white;
+  border-radius: .25em;
+}
+
+.update-button {
+  font-family: -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  box-shadow: 2px 8px 10px rgba(1, 1, 1, 0.1);
+  display: inline-block;
+  background-image: linear-gradient(#84bbf5, #2E8BF0);
+  font-size: 1.5vh;
+  font-weight: bold;
+  width: 120px;
+  border: none;
+  height: 4vh;
+  margin-right: 5px;
   color: white;
   border-radius: .25em;
 }
