@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
-
-const tasks = [
-
-];
-window.tasks = tasks;
+const tasks = [];
+const titles = [];
+const success = () => toast.success("Success, the task was added successfully!");
+const notify = () => toast.warning("Error! You have fields fields that need to be addressed!");
 
 const Task = () => {
   return (
@@ -17,9 +18,9 @@ const Task = () => {
             <div className="description grid-item"><p>{task.item[1]}</p></div>
             <div className='center'><p>{task.item[2]}</p></div>
             <div className='center'><p>{task.item[3]}</p></div>
-            <div className='center'><input type="radio" name="react-tips" value="Low" className="form-check-input" /></div>
+            <div className='center'><input type="radio" name="react-tips" className="form-check-input" /></div>
             <div className='center'>
-              <button className='update-button'>Update</button>
+              <button onClick={notify} className='update-button'>Update</button>
               <button className='delete-task-button'>Delete</button>
             </div>
           </li>
@@ -28,11 +29,6 @@ const Task = () => {
     </div>
   );
 }
-
-
-
-
-
 
 const NavBar = ({ setShowNewTask }) => {
   return (
@@ -60,48 +56,88 @@ const TaskBar = () => {
 }
 
 const NewTask = ({ setShowNewTask }) => {
-  const [title, setInputValue1] = useState('');
-  const [description, setInputValue2] = useState('');
-  const [deadline, setInputValue3] = useState('');
-  const [priority, setInputValue4] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [deadline, setDeadline] = useState('');
+  const [priority, setPriority] = useState('');
+  const [titleError, setTitleError] = useState(false);
+  const [descriptionError, setDescriptionError] = useState(false);
 
-  const titleF = (event) => {
-    setInputValue1(event.target.value);
-  };
-
-  const descriptionF = (event) => {
-    setInputValue2(event.target.value);
-  };
-
-  const  deadlineF = (event) => {
-    setInputValue3(event.target.value);
-  };
-
-  const priorityF = (event) => {
-    setInputValue4(event.target.value);
-  };
   const handleLogValues = () => {
-    setShowNewTask(false)
-    tasks.push({item: {
-      0: title,
-      1: description,
-      2: deadline,
-      3: priority,
-    }})
-  };
+    let isValid = true;
 
+    if (!title.trim()) {
+      setTitleError(true);
+      toast.error("Title cannot be empty");
+      isValid = false;
+    }
+
+    if (!description.trim()) {
+      setDescriptionError(true);
+      toast.error("Description cannot be empty");
+      isValid = false;
+    }
+
+    if (titles.includes(title.trim())) {
+      setTitleError(true);
+      toast.error("You cannot have duplicate title names");
+      isValid = false;
+    }
+
+    if (!isValid) return;
+
+    setShowNewTask(false);
+    tasks.push({
+      item: {
+        0: title,
+        1: description,
+        2: deadline.trim() ? deadline : "No End Date",
+        3: priority ? priority : "No Priority",
+      }
+    });
+    titles.push(title.trim());
+  };
 
   return (
     <div className='page'>
       <div className="newitem">
         <div className="new-item-header"><p1>Add New Task</p1></div>
-        <div className="center"><input value={title} onChange={titleF} Placeholder="Title" className="font input-field"></input></div>
-        <div className="center"><input value={description} onChange={descriptionF} Placeholder="Description" className="font input-field"></input></div>
-        <div className="center"><input value={deadline} onChange={deadlineF} type="date" className="font input-field"></input></div>
+        <div className='center'>
+          <input
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              setTitleError(false);
+            }}
+            placeholder="Title"
+            className={`font input-field ${titleError ? 'error' : ''}`}
+          />
+          {titleError && <small className="error-message">Title cannot be empty or duplicate</small>}
+        </div>
+        <div className='center'>
+          <input
+            value={description}
+            onChange={(e) => {
+              setDescription(e.target.value);
+              setDescriptionError(false);
+            }}
+            placeholder="Description"
+            className={`font input-field ${descriptionError ? 'error' : ''}`}
+          />
+          {descriptionError && <small className="error-message">Description cannot be empty</small>}
+        </div>
+        <div className='center'>
+          <input
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+            type="date"
+            className="font input-field"
+          />
+        </div>
         <div className='radio-container'>
           <div className='font left-content'>Priority:</div>
           <div className='center radio-grid'>
-            <div value={priority} onChange={priorityF}>
+            <div value={priority} onChange={(e) => setPriority(e.target.value)}>
               <label className='font'>
                 <input
                   type="radio"
@@ -142,22 +178,21 @@ const NewTask = ({ setShowNewTask }) => {
         </div>
       </div>
     </div>
-
   );
-}
+};
 
 function App() {
   const [showNewTask, setShowNewTask] = useState(false);
 
   return (
     <div className="App">
+      <ToastContainer position="bottom-right" />
       <NavBar setShowNewTask={setShowNewTask}></NavBar>
       <TaskBar></TaskBar>
       {showNewTask && <NewTask setShowNewTask={setShowNewTask}></NewTask>}
-      {tasks.length > 0 ? <Task/> : null}
+      {tasks.length > 0 ? <Task /> : null}
     </div>
   );
 }
 
 export default App;
-
