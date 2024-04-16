@@ -1,0 +1,66 @@
+<div className='page'>
+    <div className="newitem">
+      <div className="new-item-header"><p1>EditTask</p1></div>
+      <div className='center'>
+
+        <input type="text" value={newTitle} onChange={handleTitleChange}  className={`font input-field ${titleError ? 'error' : ''}`} placeholder="Title" />
+        {titleError && <small className="error-message">Title cannot be empty or duplicate</small>}
+      </div>
+      <div className='center'>
+        <input type="text" value={newDescription} onChange={handleDescriptionChange}  className={`font input-field ${descriptionError ? 'error' : ''}`} placeholder="Description" />
+        {descriptionError && <small className="error-message">Description cannot be empty</small>}
+      </div>
+      <div className='center'>
+        <input type="date" className="font input-field" value={newDeadline} onChange={handleDeadlineChange} placeholder="Deadline" />
+      </div>
+      <div className='radio-container'>
+        <div className='font left-content'>Priority:</div>
+        <div className='center radio-grid'>
+          <div value={priority} onChange={(e) => setPriority(e.target.value)}>
+            <label className='font'>
+              <input
+                type="radio"
+                name="react-tips"
+                value="Low"
+                checked={newPriority === "Low"}
+                onChange={handlePriorityChange}
+                className="form-check-input"
+              />
+              Low
+            </label>
+          </div>
+          <div>
+            <label className='font'>
+              <input
+                type="radio"
+                name="react-tips"
+                value="Medium"
+                checked={newPriority === "Medium"}
+                onChange={handlePriorityChange}
+                className="form-check-input"
+              />
+              Medium
+            </label>
+          </div>
+          <div>
+            <label className='font'>
+              <input
+                type="radio"
+                name="react-tips"
+                value="MediHighum"
+                checked={newPriority === "High"}
+                onChange={handlePriorityChange}
+                className="form-check-input"
+              />
+              High
+            </label>
+          </div>
+        </div>
+      </div>
+      <div className='add-cancel-container'>
+        <button className='center'><button className='add-button' onClick={handleUpdateClick}>Update Task</button>
+        <button className='delete-button' onClick={onClose}>Close</button>
+
+      </div>
+    </div>
+  </div>

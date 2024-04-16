@@ -1,4 +1,7 @@
-:root{min-width: 30vw; min-height: 30vh}
+:root {
+  min-width: 30vw;
+  min-height: 30vh
+}
 
 body {
   margin: 0;
@@ -7,7 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+
 }
 
 code {
@@ -19,11 +22,11 @@ code {
   background-color: #2E8BF0;
 }
 
-.error{
+.error {
   background-color: lightcoral;
 }
 
-.error-message{
+.error-message {
   color: red;
 }
 
@@ -86,7 +89,7 @@ code {
   color: rgb(78, 78, 78);
   height: 6vh;
   border: 1px solid lightgray;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .new-item-header {
@@ -105,6 +108,12 @@ code {
 }
 
 
+.box{
+  width: 200px;
+  display: grid;
+  grid-template-columns: repear(2, 1fr);
+}
+
 
 .font {
   font-family: -apple-system,
@@ -114,12 +123,18 @@ code {
 }
 
 .input-field {
-  margin-left: 1vw;
-  margin-right: 1vw;
   width: 258px;
   height: 42px;
   border-radius: 3px;
   font-size: 1.7vh;
+  border: 1px solid darkgray;
+}
+
+.s-input-field {
+  width: 100px;
+  height: 22px;
+  border-radius: 3px;
+  font-size: 18px;
   border: 1px solid darkgray;
 }
 
@@ -148,6 +163,13 @@ code {
   width: 100vw;
   justify-content: center;
 }
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 .newitem {
   margin-top: 15%;
@@ -190,14 +212,14 @@ code {
 }
 
 
-.list{
+.list {
   font-family: -apple-system,
-  BlinkMacSystemFont, sans-serif;
+    BlinkMacSystemFont, sans-serif;
   border-bottom: 1px solid gray;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   width: 100vw;
-  height: 12.5vh;
+  height: 14vh;
 }
 
 .center {
@@ -207,26 +229,26 @@ code {
 }
 
 
-.list-container{ 
+.list-container {
   list-style-type: none;
   width: 100vw;
   margin: 0;
-  padding:0;
+  padding: 0;
 }
 
-.description{
-  overflow: scroll;
+.description {
+  overflow-y: scroll;
   display: grid;
   justify-content: center;
   align-items: center;
 }
 
-.action-container{
+.action-container {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   grid-gap: 0px;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
 }
 
 .delete-task-button {
